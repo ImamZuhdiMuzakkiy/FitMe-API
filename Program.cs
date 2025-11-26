@@ -1,4 +1,6 @@
 using FitMe.API.Data;
+using FitMe.API.Repositories.Data;
+using FitMe.API.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,16 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<FitMeDbContext>(options =>
     options.UseSqlServer(connectionString)
 );
+
+//Register Repository Service
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IProgramEnrollRepository, ProgramEnrollRepository>();
+builder.Services.AddScoped<IWorkoutProgramRepository, WorkoutProgramRepository>();
+builder.Services.AddScoped<IWorkoutSessionRepository, WorkoutSessionRepository>();
+
+
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

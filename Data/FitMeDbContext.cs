@@ -30,6 +30,10 @@ public class FitMeDbContext : DbContext
         .WithMany(r => r.User)
         .HasForeignKey(u => u.RoleId)
         .OnDelete(DeleteBehavior.Restrict);
+        // .HasData(FitMeDataSeeder.GetDefaultUser());
+
+        modelBuilder.Entity<User>()
+        .HasData(FitMeDataSeeder.GetDefaultUser());
 
         // modelBuilder.Entity<User>()
         // .HasMany(u => u.ProgramEnroll)
@@ -54,6 +58,7 @@ public class FitMeDbContext : DbContext
         .HasForeignKey(w => w.WorkoutProgramId)
         .OnDelete(DeleteBehavior.Restrict);
 
-        // modelBuilder.Entity<
+        modelBuilder.Entity<Role>()
+        .HasData(FitMeDataSeeder.GetDefaultRoles());
     }
 }

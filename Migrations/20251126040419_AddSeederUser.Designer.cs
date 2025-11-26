@@ -4,6 +4,7 @@ using FitMe.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitMe.API.Migrations
 {
     [DbContext(typeof(FitMeDbContext))]
-    partial class FitMeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251126040419_AddSeederUser")]
+    partial class AddSeederUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,12 +95,6 @@ namespace FitMe.API.Migrations
                             RoleId = new Guid("10000000-0000-0000-0000-000000000002"),
                             Description = "Coach can make new program workout",
                             Name = "Coach"
-                        },
-                        new
-                        {
-                            RoleId = new Guid("10000000-0000-0000-0000-000000000003"),
-                            Description = "Member can follow programworkout",
-                            Name = "Member"
                         });
                 });
 
@@ -165,58 +162,30 @@ namespace FitMe.API.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("e81e5d36-9e96-4b32-94ae-b3e46f64c1d8"),
+                            UserId = new Guid("ae702b8d-f3ca-4e71-abb9-da12599b246f"),
                             Age = 25,
-                            CreatedAt = new DateTime(2025, 11, 26, 11, 12, 54, 777, DateTimeKind.Local).AddTicks(8828),
+                            CreatedAt = new DateTime(2025, 11, 26, 11, 4, 18, 724, DateTimeKind.Local).AddTicks(9864),
                             Email = "admin1@gmail.com",
                             Gender = "Male",
                             Height = 175.0,
                             IsUsed = false,
                             Password = "12345",
                             RoleId = new Guid("10000000-0000-0000-0000-000000000001"),
-                            UpdatedAt = new DateTime(2025, 11, 26, 11, 12, 54, 777, DateTimeKind.Local).AddTicks(8842),
+                            UpdatedAt = new DateTime(2025, 11, 26, 11, 4, 18, 724, DateTimeKind.Local).AddTicks(9882),
                             Weight = 65.0
                         },
                         new
                         {
-                            UserId = new Guid("71226f4b-b3b5-44df-9e60-37aa782dfa6c"),
+                            UserId = new Guid("b8f21e11-4c43-42c2-9af7-1759671ce6cf"),
                             Age = 30,
-                            CreatedAt = new DateTime(2025, 11, 26, 11, 12, 54, 777, DateTimeKind.Local).AddTicks(8868),
+                            CreatedAt = new DateTime(2025, 11, 26, 11, 4, 18, 724, DateTimeKind.Local).AddTicks(9894),
                             Email = "coach1@gmail.com",
                             Gender = "Male",
                             Height = 175.0,
                             IsUsed = false,
                             Password = "123456",
                             RoleId = new Guid("10000000-0000-0000-0000-000000000002"),
-                            UpdatedAt = new DateTime(2025, 11, 26, 11, 12, 54, 777, DateTimeKind.Local).AddTicks(8869),
-                            Weight = 65.0
-                        },
-                        new
-                        {
-                            UserId = new Guid("dc876428-245d-4ad6-ae11-ae536d81dd11"),
-                            Age = 30,
-                            CreatedAt = new DateTime(2025, 11, 26, 11, 12, 54, 777, DateTimeKind.Local).AddTicks(8873),
-                            Email = "coach2@gmail.com",
-                            Gender = "Female",
-                            Height = 175.0,
-                            IsUsed = false,
-                            Password = "123456",
-                            RoleId = new Guid("10000000-0000-0000-0000-000000000002"),
-                            UpdatedAt = new DateTime(2025, 11, 26, 11, 12, 54, 777, DateTimeKind.Local).AddTicks(8873),
-                            Weight = 65.0
-                        },
-                        new
-                        {
-                            UserId = new Guid("3cf441d2-daa3-4eb1-9b87-6f8ddf58d198"),
-                            Age = 30,
-                            CreatedAt = new DateTime(2025, 11, 26, 11, 12, 54, 777, DateTimeKind.Local).AddTicks(8876),
-                            Email = "member1@gmail.com",
-                            Gender = "Female",
-                            Height = 175.0,
-                            IsUsed = false,
-                            Password = "123",
-                            RoleId = new Guid("10000000-0000-0000-0000-000000000003"),
-                            UpdatedAt = new DateTime(2025, 11, 26, 11, 12, 54, 777, DateTimeKind.Local).AddTicks(8877),
+                            UpdatedAt = new DateTime(2025, 11, 26, 11, 4, 18, 724, DateTimeKind.Local).AddTicks(9896),
                             Weight = 65.0
                         });
                 });
