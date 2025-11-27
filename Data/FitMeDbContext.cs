@@ -56,7 +56,7 @@ public class FitMeDbContext : DbContext
         .HasOne(w => w.WorkoutProgram)
         .WithMany(w => w.WorkoutSession)
         .HasForeignKey(w => w.WorkoutProgramId)
-        .OnDelete(DeleteBehavior.Restrict);
+        .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Role>()
         .HasData(FitMeDataSeeder.GetDefaultRoles());

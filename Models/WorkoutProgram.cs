@@ -5,7 +5,7 @@ public class WorkoutProgram
     public string Title { get; set; }
     public string Description { get; set; }
     public DifficultyEnum Difficulty { get; set; }
-    public string DurationWeeks { get; set; }
+    public ushort DurationWeeks { get; set; }
     public StatusWorkoutEnum Status { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }

@@ -32,4 +32,10 @@ public class UnitOfWork : IUnitOfWork
             throw; 
         }
     }
+
+    public Task ClearTracksAsync(CancellationToken cancellationToken)
+    {
+        _context.ChangeTracker.Clear();
+        return Task.CompletedTask;
+    }
 }

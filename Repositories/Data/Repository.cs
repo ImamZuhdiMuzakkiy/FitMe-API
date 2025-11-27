@@ -7,7 +7,7 @@ namespace FitMe.API.Repositories.Data;
 public class Repository<Repo> : IRepository<Repo> where Repo : class
 {
 
-    private readonly FitMeDbContext _context;
+    protected readonly FitMeDbContext _context;
     // public Repository() : base(repo)
     public Repository(FitMeDbContext context)
     {
