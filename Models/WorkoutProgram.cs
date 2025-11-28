@@ -20,5 +20,5 @@ public enum DifficultyEnum
 
 public enum StatusWorkoutEnum
 {
-    Active, Inactive, Accepted, Rejected
+    Pending, Active, Inactive, Accepted, Rejected
 }

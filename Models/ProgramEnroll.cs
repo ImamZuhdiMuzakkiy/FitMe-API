@@ -5,7 +5,7 @@ public class ProgramEnroll
     public Guid WorkoutProgramId { get; set; }
     public StatusProgramEnroll Status { get; set; }
     public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
+    public DateTime? EndDate { get; set; }
 
     public WorkoutProgram? WorkoutProgram { get; set; }
     public User? User { get; set; }

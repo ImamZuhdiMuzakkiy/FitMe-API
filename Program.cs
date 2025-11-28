@@ -1,6 +1,10 @@
 using FitMe.API.Data;
+using FitMe.API.Repositories;
 using FitMe.API.Repositories.Data;
 using FitMe.API.Repositories.Interfaces;
+using FitMe.API.Services;
+using FitMe.API.Services.Interfaces;
+using FitMe.API.Utilities;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +24,9 @@ builder.Services.AddScoped<IProgramEnrollRepository, ProgramEnrollRepository>();
 builder.Services.AddScoped<IWorkoutProgramRepository, WorkoutProgramRepository>();
 builder.Services.AddScoped<IWorkoutSessionRepository, WorkoutSessionRepository>();
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IWorkoutProgramService, WorkoutProgramService>();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 
 
@@ -36,6 +43,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseExceptionHandler(_ => { });
 
 app.UseHttpsRedirection();
 

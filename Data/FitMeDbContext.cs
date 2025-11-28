@@ -60,5 +60,11 @@ public class FitMeDbContext : DbContext
 
         modelBuilder.Entity<Role>()
         .HasData(FitMeDataSeeder.GetDefaultRoles());
+
+        modelBuilder.Entity<WorkoutProgram>()
+        .HasData(FitMeDataSeeder.GetDefaultWorkoutProgram());
+
+        modelBuilder.Entity<WorkoutSession>()
+        .HasData(FitMeDataSeeder.GetDefaultWorkoutSession());
     }
 }

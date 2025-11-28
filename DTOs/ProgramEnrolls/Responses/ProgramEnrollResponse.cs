@@ -7,5 +7,5 @@ public record ProgramEnrollResponse
     string ProgramTitle,
     StatusProgramEnroll Status,
     DateTime StartDate,
-    DateTime? EndDat
+    DateTime? EndDate
 );

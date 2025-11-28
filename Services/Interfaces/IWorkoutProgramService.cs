@@ -5,10 +5,14 @@ namespace FitMe.API.Services.Interfaces;
 
 public interface IWorkoutProgramService
 {
-    Task CreateProgramWorkoutAsync(ProgramWorkoutRequest request, CancellationToken cancellationToken);
-    Task UpdateProgramWorkoutAsync(Guid id, ProgramWorkoutRequest request, CancellationToken cancellationToken);
-    Task DeleteProgramWorkoutAsync(Guid id, CancellationToken cancellationToken);
+    Task CreateWorkoutProgramAsync(WorkoutProgramRequest request, CancellationToken cancellationToken);
+    // Task UpdateWorkoutProgramAsync(Guid id, WorkoutProgramRequest request, CancellationToken cancellationToken);
+    Task DeleteWorkoutProgramAsync(Guid id, CancellationToken cancellationToken);
 
-    Task<IEnumerable<ProgramWorkoutResponse>> GetAllProgramWorkoutAsync(CancellationToken cancellantionToken);
-    Task<ProgramWorkoutResponse> GetWorkoutProgramByIdAsync(Guid id, CancellationToken cancellationToken); 
+    Task<IEnumerable<WorkoutProgramResponse>> GetAllWorkoutProgramAsync(CancellationToken cancellantionToken);
+    Task<WorkoutProgramResponse> GetWorkoutProgramByIdAsync(Guid id, CancellationToken cancellationToken); 
+    Task<IEnumerable<WorkoutProgramResponse>> GetPendingProgramsAsync(CancellationToken cancellationToken);
+    Task ReviewProgramAsync(Guid id, ProgramReviewRequest request, CancellationToken cancellationToken);
+    Task ToggleProgramStatusAsync(Guid id, CancellationToken cancellationToken);
+
 }

@@ -4,6 +4,7 @@ using FitMe.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitMe.API.Migrations
 {
     [DbContext(typeof(FitMeDbContext))]
-    partial class FitMeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251128031440_Revisi")]
+    partial class Revisi
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,86 +169,58 @@ namespace FitMe.API.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("23a99bfb-75e9-45e1-b61a-7f2a6060c612"),
+                            UserId = new Guid("949561eb-b7cd-4244-85c3-6c9c127198cd"),
                             Age = 25,
-                            CreatedAt = new DateTime(2025, 11, 28, 11, 9, 47, 555, DateTimeKind.Local).AddTicks(6504),
+                            CreatedAt = new DateTime(2025, 11, 28, 10, 14, 37, 742, DateTimeKind.Local).AddTicks(3503),
                             Email = "admin1@gmail.com",
                             Gender = "Male",
                             Height = 175.0,
                             IsUsed = false,
                             Password = "12345",
                             RoleId = new Guid("10000000-0000-0000-0000-000000000001"),
-                            UpdatedAt = new DateTime(2025, 11, 28, 11, 9, 47, 555, DateTimeKind.Local).AddTicks(6517),
+                            UpdatedAt = new DateTime(2025, 11, 28, 10, 14, 37, 742, DateTimeKind.Local).AddTicks(3520),
                             Weight = 65.0
                         },
                         new
                         {
-                            UserId = new Guid("d4b8649a-bdc0-4111-af61-442b3daf6ba7"),
+                            UserId = new Guid("a99b02a2-cc2b-4328-8d2d-85fb0c2df930"),
                             Age = 30,
-                            CreatedAt = new DateTime(2025, 11, 28, 11, 9, 47, 555, DateTimeKind.Local).AddTicks(6526),
+                            CreatedAt = new DateTime(2025, 11, 28, 10, 14, 37, 742, DateTimeKind.Local).AddTicks(3527),
                             Email = "coach1@gmail.com",
                             Gender = "Male",
                             Height = 175.0,
                             IsUsed = false,
                             Password = "123456",
                             RoleId = new Guid("10000000-0000-0000-0000-000000000002"),
-                            UpdatedAt = new DateTime(2025, 11, 28, 11, 9, 47, 555, DateTimeKind.Local).AddTicks(6527),
+                            UpdatedAt = new DateTime(2025, 11, 28, 10, 14, 37, 742, DateTimeKind.Local).AddTicks(3528),
                             Weight = 65.0
                         },
                         new
                         {
-                            UserId = new Guid("3508a3cd-3e2f-4f55-9579-1e71461e551b"),
+                            UserId = new Guid("55b6322f-7068-4cb0-a599-4ddeb95df7dc"),
                             Age = 30,
-                            CreatedAt = new DateTime(2025, 11, 28, 11, 9, 47, 555, DateTimeKind.Local).AddTicks(6601),
+                            CreatedAt = new DateTime(2025, 11, 28, 10, 14, 37, 742, DateTimeKind.Local).AddTicks(3552),
                             Email = "coach2@gmail.com",
                             Gender = "Female",
                             Height = 175.0,
                             IsUsed = false,
                             Password = "123456",
                             RoleId = new Guid("10000000-0000-0000-0000-000000000002"),
-                            UpdatedAt = new DateTime(2025, 11, 28, 11, 9, 47, 555, DateTimeKind.Local).AddTicks(6602),
+                            UpdatedAt = new DateTime(2025, 11, 28, 10, 14, 37, 742, DateTimeKind.Local).AddTicks(3553),
                             Weight = 65.0
                         },
                         new
                         {
-                            UserId = new Guid("f5671bf8-63a8-47ef-b29c-3f763d379a8d"),
+                            UserId = new Guid("11263469-1d43-4b9c-9e5b-89492c9560e3"),
                             Age = 30,
-                            CreatedAt = new DateTime(2025, 11, 28, 11, 9, 47, 555, DateTimeKind.Local).AddTicks(6607),
+                            CreatedAt = new DateTime(2025, 11, 28, 10, 14, 37, 742, DateTimeKind.Local).AddTicks(3560),
                             Email = "member1@gmail.com",
                             Gender = "Female",
                             Height = 175.0,
                             IsUsed = false,
                             Password = "123",
                             RoleId = new Guid("10000000-0000-0000-0000-000000000003"),
-                            UpdatedAt = new DateTime(2025, 11, 28, 11, 9, 47, 555, DateTimeKind.Local).AddTicks(6608),
-                            Weight = 65.0
-                        },
-                        new
-                        {
-                            UserId = new Guid("12300000-0000-0000-0000-000000000003"),
-                            Age = 30,
-                            CreatedAt = new DateTime(2025, 11, 28, 11, 9, 47, 555, DateTimeKind.Local).AddTicks(6612),
-                            Email = "coach3@gmail.com",
-                            Gender = "Female",
-                            Height = 175.0,
-                            IsUsed = false,
-                            Password = "123",
-                            RoleId = new Guid("10000000-0000-0000-0000-000000000002"),
-                            UpdatedAt = new DateTime(2025, 11, 28, 11, 9, 47, 555, DateTimeKind.Local).AddTicks(6613),
-                            Weight = 65.0
-                        },
-                        new
-                        {
-                            UserId = new Guid("12345000-0000-0000-0000-000000000003"),
-                            Age = 30,
-                            CreatedAt = new DateTime(2025, 11, 28, 11, 9, 47, 555, DateTimeKind.Local).AddTicks(6620),
-                            Email = "coach4@gmail.com",
-                            Gender = "Female",
-                            Height = 175.0,
-                            IsUsed = false,
-                            Password = "1234",
-                            RoleId = new Guid("10000000-0000-0000-0000-000000000002"),
-                            UpdatedAt = new DateTime(2025, 11, 28, 11, 9, 47, 555, DateTimeKind.Local).AddTicks(6621),
+                            UpdatedAt = new DateTime(2025, 11, 28, 10, 14, 37, 742, DateTimeKind.Local).AddTicks(3561),
                             Weight = 65.0
                         });
                 });
@@ -301,20 +276,6 @@ namespace FitMe.API.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("tbl_workout_program", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            WorkoutProgramId = new Guid("12300000-1234-0000-0000-000000000003"),
-                            CreatedAt = new DateTime(2025, 11, 28, 11, 9, 47, 556, DateTimeKind.Local).AddTicks(6124),
-                            Description = "Perlu mengikuti step by step",
-                            Difficulty = "Intermediate",
-                            DurationWeeks = 0,
-                            Status = "Active",
-                            Title = "Bulking",
-                            UpdatedAt = new DateTime(2025, 11, 28, 11, 9, 47, 556, DateTimeKind.Local).AddTicks(6144),
-                            UserId = new Guid("12300000-0000-0000-0000-000000000003")
-                        });
                 });
 
             modelBuilder.Entity("WorkoutSession", b =>
@@ -357,35 +318,6 @@ namespace FitMe.API.Migrations
                     b.HasIndex("WorkoutProgramId");
 
                     b.ToTable("tbl_workout_session", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            WorkoutSessionId = new Guid("13df2494-b8ca-4fca-ba59-b77062f45d80"),
-                            DurationMinutes = "20:00",
-                            Instructions = "Dalam pembelajaran ini yang harus dipersiapkan adalah bla bla bla",
-                            Title = "Step 01 Bulk",
-                            VideoUrl = "https/test",
-                            WorkoutProgramId = new Guid("12300000-1234-0000-0000-000000000003")
-                        },
-                        new
-                        {
-                            WorkoutSessionId = new Guid("71fbadd8-23d4-4c17-ab97-1a0e5bc718f8"),
-                            DurationMinutes = "20:00",
-                            Instructions = "Dalam pembelajaran ini yang harus dipersiapkan adalah bebebe",
-                            Title = "Step 02 Bulk",
-                            VideoUrl = "https/test",
-                            WorkoutProgramId = new Guid("12300000-1234-0000-0000-000000000003")
-                        },
-                        new
-                        {
-                            WorkoutSessionId = new Guid("5f73e96c-df07-4402-980e-6b2f3b14eb12"),
-                            DurationMinutes = "20:00",
-                            Instructions = "Dalam pembelajaran ini yang harus dipersiapkan adalah bobobo",
-                            Title = "Step 01 Bulk",
-                            VideoUrl = "https/test",
-                            WorkoutProgramId = new Guid("12300000-1234-0000-0000-000000000003")
-                        });
                 });
 
             modelBuilder.Entity("ProgramEnroll", b =>

@@ -1,6 +1,6 @@
 namespace FitMe.API.DTOs.ProgramWorkouts.Responses;
 
-public record ProgramWorkoutResponse
+public record WorkoutProgramResponse
 (
     Guid ProgramWorkoutId,
     string WorkoutProgramTitle,

@@ -20,7 +20,7 @@ public class Repository<Repo> : IRepository<Repo> where Repo : class
 
     public Task DeleteAsync(Repo param)
     {
-        _context.Set<Repo>().Update(param);
+        _context.Set<Repo>().Remove(param);
         return Task.CompletedTask;
     }
 
@@ -36,7 +36,7 @@ public class Repository<Repo> : IRepository<Repo> where Repo : class
 
     public Task UpdateAsync(Repo param)
     {
-        _context.Set<Repo>().Remove(param);
+        _context.Set<Repo>().Update(param);
         return Task.CompletedTask;
     }
 

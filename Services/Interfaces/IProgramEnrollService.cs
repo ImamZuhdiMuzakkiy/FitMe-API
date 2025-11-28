@@ -5,8 +5,8 @@ namespace FitMe.API.Services.Interfaces;
 
 public interface IProgramEnrollService
 {
-    Task EnrollAsync(Guid id, ProgramEnrollRequest request);
-    Task<IEnumerable<ProgramEnrollListItemResponse>> GetMyEnrollmentsAsync();
-    Task CompleteEnrollmentAsync(Guid id);
+    Task EnrollAsync(Guid programId, Guid userId, ProgramEnrollRequest request, CancellationToken cancellationToken);
+    Task CompleteEnrollmentAsync(Guid enrollmentId, CancellationToken cancellationToken);
+    Task<IEnumerable<ProgramEnrollListItemResponse>> GetMyEnrollmentsAsync(Guid userId, CancellationToken cancellationToken);
 
 }
