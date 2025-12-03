@@ -1,22 +1,29 @@
+using FitMe.API.DTOs.ProgramEnrolls.Requests;
+using FitMe.API.DTOs.ProgramEnrolls.Responses;
 using FitMe.API.DTOs.ProgramWorkouts.Requests;
 using FitMe.API.DTOs.ProgramWorkouts.Responses;
 using FitMe.API.Services.Interfaces;
 using FitMe.API.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("api/Programs")]
+[Route("api/programs")]
+[Authorize]
 public class WorkoutProgramController : ControllerBase
 {
     private readonly IWorkoutProgramService _workoutProgramService;
+    private readonly IProgramEnrollService _programEnrollService;
 
-    public WorkoutProgramController(IWorkoutProgramService workoutProgramService)
+    public WorkoutProgramController(IWorkoutProgramService workoutProgramService, IProgramEnrollService programEnrollService)
     {
         _workoutProgramService = workoutProgramService;
+        _programEnrollService = programEnrollService;
     }
 
     // MEMBER / PUBLIC
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAll(CancellationToken token)
     {
         var data = await _workoutProgramService.GetAllWorkoutProgramAsync(token);
@@ -24,6 +31,7 @@ public class WorkoutProgramController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize(Roles = "member")]
     public async Task<IActionResult> GetById(Guid id, CancellationToken token)
     {
         var data = await _workoutProgramService.GetWorkoutProgramByIdAsync(id, token);
@@ -32,10 +40,18 @@ public class WorkoutProgramController : ControllerBase
 
     // COACH
     [HttpPost]
+    [Authorize(Roles = "coach")]
     public async Task<IActionResult> Create(WorkoutProgramRequest request, CancellationToken token)
     {
         await _workoutProgramService.CreateWorkoutProgramAsync(request, token);
         return Ok(new ApiResponse<WorkoutProgramResponse>("Workout Program Created"));
+    }
+
+    [HttpPost("{programId}/enroll")]
+    public async Task<IActionResult> Enroll(Guid programId, Guid userId, ProgramEnrollRequest request, CancellationToken cancellationToken)
+    {
+        await _programEnrollService.EnrollAsync(programId, userId, request, cancellationToken);
+        return Ok(new ApiResponse<ProgramEnrollResponse>("Success Enroll Workout Program"));
     }
 
     [HttpDelete("{id}")]

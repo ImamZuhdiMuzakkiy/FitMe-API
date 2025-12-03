@@ -10,6 +10,13 @@ public static class FitMeDataSeeder
     private static readonly Guid _userCoach4 = new Guid("12345000-0000-0000-0000-000000000003");
 
     private static readonly Guid _programWorkout1 = new Guid("12300000-1234-0000-0000-000000000003");
+    private static readonly Guid _programWorkout2 = new Guid("12345000-1234-0000-0000-000000000003");
+
+    private static readonly Guid _userAdmin1 = new Guid("20000000-0000-0000-0000-000000000001");
+    private static readonly Guid _userCoach1 = new Guid("20000000-0000-0000-0000-000000000002");
+    private static readonly Guid _userCoach2 = new Guid("20000000-0000-0000-0000-000000000003");
+    private static readonly Guid _userMember1 = new Guid("20000000-0000-0000-0000-000000000004");
+
 
     public static List<Role> GetDefaultRoles()
     {
@@ -25,10 +32,10 @@ public static class FitMeDataSeeder
     {
         return new List<User>
         {
-            new User {UserId = Guid.NewGuid(), RoleId = _adminId, Email = "admin1@gmail.com", Password = "12345", Age = 25, Gender = GenderEnum.Male, Height = 175, Weight = 65, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now},
-            new User {UserId = Guid.NewGuid(), RoleId = _coachId, Email = "coach1@gmail.com", Password = "123456", Age = 30, Gender = GenderEnum.Male, Height = 175, Weight = 65, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now},
-            new User {UserId = Guid.NewGuid(), RoleId = _coachId, Email = "coach2@gmail.com", Password = "123456", Age = 30, Gender = GenderEnum.Female, Height = 175, Weight = 65, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now},
-            new User {UserId = Guid.NewGuid(), RoleId = _memberId, Email = "member1@gmail.com", Password = "123", Age = 30, Gender = GenderEnum.Female, Height = 175, Weight = 65, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now},
+            new User {UserId = _userAdmin1, RoleId = _adminId, Email = "admin1@gmail.com", Password = "12345", Age = 25, Gender = GenderEnum.Male, Height = 175, Weight = 65, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now},
+            new User {UserId = _userCoach1, RoleId = _coachId, Email = "coach1@gmail.com", Password = "123456", Age = 30, Gender = GenderEnum.Male, Height = 175, Weight = 65, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now},
+            new User {UserId = _userCoach2, RoleId = _coachId, Email = "coach2@gmail.com", Password = "123456", Age = 30, Gender = GenderEnum.Female, Height = 175, Weight = 65, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now},
+            new User {UserId = _userMember1, RoleId = _memberId, Email = "member1@gmail.com", Password = "123", Age = 30, Gender = GenderEnum.Female, Height = 175, Weight = 65, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now},
             new User {UserId = _userCoach3, RoleId = _coachId, Email = "coach3@gmail.com", Password = "123", Age = 30, Gender = GenderEnum.Female, Height = 175, Weight = 65, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now},
             new User {UserId = _userCoach4, RoleId = _coachId, Email = "coach4@gmail.com", Password = "1234", Age = 30, Gender = GenderEnum.Female, Height = 175, Weight = 65, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now},
         };
@@ -47,6 +54,18 @@ public static class FitMeDataSeeder
                 Difficulty = DifficultyEnum.Intermediate,
                 DurationWeeks = 1,
                 Status = StatusWorkoutEnum.Active,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+            },
+            new WorkoutProgram
+            {
+                WorkoutProgramId = _programWorkout2,
+                UserId = _userCoach3,
+                Title = "LegDay",
+                Description = "Perlu mengikuti step by step",
+                Difficulty = DifficultyEnum.Intermediate,
+                DurationWeeks = 1,
+                Status = StatusWorkoutEnum.Pending,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
             }
@@ -83,7 +102,16 @@ public static class FitMeDataSeeder
                 VideoUrl = "https/test",
                 DurationMinutes = "20:00",
                 Instructions = "Dalam pembelajaran ini yang harus dipersiapkan adalah bobobo"
-            }
+            },
+            new WorkoutSession
+            {
+                WorkoutSessionId = Guid.NewGuid(),
+                WorkoutProgramId = _programWorkout2,
+                Title = "Step 01 Leg",
+                VideoUrl = "https/test",
+                DurationMinutes = "20:00",
+                Instructions = "Dalam pembelajaran ini.."
+            },
         };
     }
 }

@@ -10,4 +10,11 @@ public class UserRepository : Repository<User>, IUserRepository
     {
     }
 
+    public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken)
+    {
+        return await _context.Users
+        .Include(x => x.Role)
+        .FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+    }
+
 }

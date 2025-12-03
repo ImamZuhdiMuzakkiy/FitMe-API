@@ -6,6 +6,7 @@ using FitMe.API.DTOs.ProgramWorkouts.Responses;
 using FitMe.API.Repositories;
 using FitMe.API.Repositories.Interfaces;
 using FitMe.API.Services.Interfaces;
+using FitMe.API.Utilities;
 
 namespace FitMe.API.Services;
 
@@ -14,12 +15,14 @@ public class WorkoutProgramService : IWorkoutProgramService
     private readonly IWorkoutProgramRepository _workoutProgramRespository;
     private readonly IWorkoutSessionRepository _workoutSessionRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IEmailHandler _emailHandler;
 
-    public WorkoutProgramService(IWorkoutProgramRepository workoutProgramRepository, IWorkoutSessionRepository workoutSessionRepository, IUnitOfWork unitOfWork)
+    public WorkoutProgramService(IWorkoutProgramRepository workoutProgramRepository, IWorkoutSessionRepository workoutSessionRepository, IUnitOfWork unitOfWork, IEmailHandler emailHandler)
     {
         _workoutProgramRespository = workoutProgramRepository;
         _workoutSessionRepository = workoutSessionRepository;
         _unitOfWork = unitOfWork;
+        _emailHandler = emailHandler;
     }
     public async Task CreateWorkoutProgramAsync(WorkoutProgramRequest request, CancellationToken cancellationToken)
     {
@@ -47,6 +50,13 @@ public class WorkoutProgramService : IWorkoutProgramService
             }).ToList()
         };
 
+        var email = new EmailDto(
+            "imam@gmail.com",
+            "Testing",
+            $"{createProgramWorkout}"
+        );
+        await _emailHandler.SendEmailAsync(email);
+
         await _unitOfWork.CommitTransactionAsync(async () =>
         {
             await _workoutProgramRespository.CreateAsync(createProgramWorkout, cancellationToken);
@@ -72,9 +82,17 @@ public class WorkoutProgramService : IWorkoutProgramService
         var getProgramWorkouts = await _workoutProgramRespository.GetAllAsync(cancellantionToken);
         if (!getProgramWorkouts.Any())
         {
-            return Enumerable.Empty<WorkoutProgramResponse>();
+            throw new NullReferenceException("No Program Workout");
         }
 
+        var activeProgram = getProgramWorkouts
+        .Where(p => p.Status == StatusWorkoutEnum.Active)
+        .ToList();
+
+        if(!activeProgram.Any())
+        {
+            throw new NullReferenceException("No Program Workout Active");
+        }
 
         var getSessions = await _workoutSessionRepository.GetAllAsync(cancellantionToken);
         if (!getSessions.Any())
@@ -82,7 +100,7 @@ public class WorkoutProgramService : IWorkoutProgramService
             throw new NullReferenceException("No Program Workout Sessionfound");
         }
 
-        var programWorkoutMap = getProgramWorkouts.GroupJoin(
+        var programWorkoutMap = activeProgram.GroupJoin(
             getSessions,
             p => p.WorkoutProgramId,
             s => s.WorkoutProgramId,
@@ -103,6 +121,8 @@ public class WorkoutProgramService : IWorkoutProgramService
                     ).ToList()
                 )
         ).ToList();
+    
+    // if(!programWorkoutMap.Status)
 
         return programWorkoutMap;
     }
@@ -229,7 +249,7 @@ public class WorkoutProgramService : IWorkoutProgramService
         }
         else
         {
-            throw new Exception("Invalid review status");
+            throw new NullReferenceException("Invalid review status");
         }
 
         program.UpdatedAt = DateTime.UtcNow;
